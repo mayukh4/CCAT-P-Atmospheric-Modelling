@@ -1,0 +1,264 @@
+# File CMB_det_load_Antarctic_DJF.amc
+#
+# A modified version of the file Antarctic_DJF.amc from the am
+# cookbook, for computing single-mode detector loading versus
+# observing altitude.  Altitude and zenith angle are taken from the
+# command line.  Detector frequency and rectangular averaging bandwidth
+# are adjusted by editing this file.
+#
+# Output is band-averaged Rayleigh-Jeans brightness temperature in K.
+# Multiply this by Boltzmann's constant and the bandwidth to get the
+# detector loading power.
+#
+# The profiles in this file were derived from NASA MERRA2 reanalysis
+# data, temporally and spatially averaged using the Giovanni online
+# data system developed and maintained by the NASA Goddard Earth
+# Sciences Data and Information Services Center (GES DISC).
+#
+# Files:
+#   g4.curtainTime.M2IMNPASM_5_12_4_H.20061201-20161130.180W_90S_180E_66S.nc
+#   g4.curtainTime.M2IMNPASM_5_12_4_O3.20061201-20161130.180W_90S_180E_66S.nc
+#   g4.curtainTime.M2IMNPASM_5_12_4_QV.20061201-20161130.180W_90S_180E_66S.nc
+#   g4.curtainTime.M2IMNPASM_5_12_4_T.20061201-20161130.180W_90S_180E_66S.nc
+#
+# MERRA references:
+#   M. M. Rienecker et al. (2011), MERRA: NASA's Modern-Era Retrospective
+#   Analysis for Research and Applications. J. Climate 24:3624.
+#
+#   A. Molod et al (2015), Development of the GEOS-5 atmospheric general
+#   circulation model: evolution from MERRA to MERRA2.  Geoscience Model
+#   Development 8:1339. 
+#
+# MERRA is produced by the NASA/Goddard Global Modeling and Assimilation
+# Office (GMAO).  MERRA data are archived and distributed by the
+# GES DISC.
+?
+? Usage:
+?  am CMB_det_load_Antarctic_DJF.amc  zobs zenith_angle
+?
+? Example:
+?  am CMB_det_load_Antarctic_DJF.amc  35 km  60 deg
+?
+
+# The frequency grid should extend at least half the bandwidth to
+# either side of the band center frequency.  10 MHz resolution will
+# provide adequate accuracy for integrals across stratospheric O3
+# lines.  Warnings about unresolved high-altitude lines can be
+# ignored.
+f  230.0 GHz  273.0 GHz  10 MHz
+
+# This line sets up a single-point output at the band center frequency
+fout  251.0 GHz  251.0 GHz
+
+# This is the detector bandwidth
+ils rectangle 43.0 GHz
+
+output f GHz  tau  tx  Trj K  Tb K
+
+geometry spherical
+refract radio
+
+# Observing altitude from the command line
+zobs %1 %2
+
+# Zenith angle from the command line
+za %3 %4
+
+tol 1e-4
+
+T0 2.7 K
+
+layer mesosphere
+Pbase 0.1 mbar
+Tbase 227.5 K
+lineshape Voigt-Kielkopf
+column dry_air vmr
+column h2o vmr 6.88e-06
+column o3 vmr 1.74e-06
+
+layer mesosphere
+Pbase 0.3 mbar
+Tbase 246.3 K
+lineshape Voigt-Kielkopf
+column dry_air vmr
+column h2o vmr 6.98e-06
+column o3 vmr 1.64e-06
+
+layer mesosphere
+Pbase 0.4 mbar
+Tbase 252.2 K
+lineshape Voigt-Kielkopf
+column dry_air vmr
+column h2o vmr 7.07e-06
+column o3 vmr 1.64e-06
+
+layer mesosphere
+Pbase 0.5 mbar
+Tbase 257.5 K
+lineshape Voigt-Kielkopf
+column dry_air vmr
+column h2o vmr 7.06e-06
+column o3 vmr 1.83e-06
+
+layer mesosphere
+Pbase 0.7 mbar
+Tbase 265.7 K
+lineshape Voigt-Kielkopf
+column dry_air vmr
+column h2o vmr 7.02e-06
+column o3 vmr 2.17e-06
+
+layer stratosphere
+Pbase 1 mbar
+Tbase 269.5 K
+lineshape Voigt-Kielkopf
+column dry_air vmr
+column h2o vmr 6.96e-06
+column o3 vmr 2.73e-06
+
+layer stratosphere
+Pbase 2 mbar
+Tbase 260.4 K
+column dry_air vmr
+column h2o vmr 6.79e-06
+column o3 vmr 4.12e-06
+
+layer stratosphere
+Pbase 3 mbar
+Tbase 252.9 K
+column dry_air vmr
+column h2o vmr 6.56e-06
+column o3 vmr 6.01e-06
+
+layer stratosphere
+Pbase 4 mbar
+Tbase 247.3 K
+column dry_air vmr
+column h2o vmr 6.36e-06
+column o3 vmr 7.23e-06
+
+layer stratosphere
+Pbase 5 mbar
+Tbase 243.1 K
+column dry_air vmr
+column h2o vmr 6.16e-06
+column o3 vmr 7.77e-06
+
+layer stratosphere
+Pbase 7 mbar
+Tbase 237.9 K
+column dry_air vmr
+column h2o vmr 5.88e-06
+column o3 vmr 7.97e-06
+
+layer stratosphere
+Pbase 10 mbar
+Tbase 232.8 K
+column dry_air vmr
+column h2o vmr 5.52e-06
+column o3 vmr 7.94e-06
+
+layer stratosphere
+Pbase 20 mbar
+Tbase 224.8 K
+column dry_air vmr
+column h2o vmr 5.08e-06
+column o3 vmr 7.13e-06
+
+layer stratosphere
+Pbase 30 mbar
+Tbase 220.8 K
+column dry_air vmr
+column h2o vmr 4.78e-06
+column o3 vmr 5.42e-06
+
+layer stratosphere
+Pbase 40 mbar
+Tbase 217.9 K
+column dry_air vmr
+column h2o vmr 4.67e-06
+column o3 vmr 3.69e-06
+
+layer stratosphere
+Pbase 50 mbar
+Tbase 215.1 K
+column dry_air vmr
+column h2o vmr 4.59e-06
+column o3 vmr 2.48e-06
+
+layer stratosphere
+Pbase 70 mbar
+Tbase 208.5 K
+column dry_air vmr
+column h2o vmr 4.50e-06
+column o3 vmr 1.41e-06
+
+layer troposphere
+Pbase 100 mbar
+Tbase 206.4 K
+column dry_air vmr
+column h2o vmr 5.67e-06
+column o3 vmr 5.06e-07
+
+layer troposphere
+Pbase 150 mbar
+Tbase 214.0 K
+column dry_air vmr
+column h2o vmr 1.46e-05
+column o3 vmr 1.45e-07
+
+layer troposphere
+Pbase 200 mbar
+Tbase 222.3 K
+column dry_air vmr
+column h2o vmr 5.85e-05
+column o3 vmr 7.64e-08
+
+layer troposphere
+Pbase 250 mbar
+Tbase 231.7 K
+column dry_air vmr
+column h2o vmr 1.85e-04
+column o3 vmr 5.84e-08
+
+layer troposphere
+Pbase 300 mbar
+Tbase 241.2 K
+column dry_air vmr
+column h2o vmr 4.06e-04
+column o3 vmr 5.18e-08
+
+layer troposphere
+Pbase 350 mbar
+Tbase 249.7 K
+column dry_air vmr
+column h2o vmr 6.96e-04
+column o3 vmr 4.86e-08
+
+layer troposphere
+Pbase 400 mbar
+Tbase 256.2 K
+column dry_air vmr
+column h2o vmr 1.11e-03
+column o3 vmr 4.68e-08
+
+layer troposphere
+Pbase 450 mbar
+Tbase 262.3 K
+column dry_air vmr
+column h2o vmr 1.73e-03
+column o3 vmr 4.55e-08
+
+layer troposphere
+Pbase 500 mbar
+Tbase 268.0 K
+column dry_air vmr
+column h2o vmr 2.57e-03
+column o3 vmr 4.44e-08
+
+layer troposphere
+Pbase 550 mbar
+Tbase 273.4 K
+column dry_air vmr
+column h2o vmr 3.41e-03
+column o3 vmr 4.35e-08
