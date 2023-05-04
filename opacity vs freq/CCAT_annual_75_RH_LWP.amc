@@ -1,0 +1,206 @@
+# Example 2.4 - Simple atmospheric model with constant RH and cloud
+#
+#               T(P) from US standard atmosphere
+?
+? Usage:   am example2.4.amc  RH%  cloud_LWP
+? Example: am example2.4.amc  75%  200 g*m^-2
+?
+
+f 140 GHz  900 GHz  10 MHz
+output f GHz  tau dB
+
+T0 2.7 K
+
+layer mesosphere
+Pbase 0.1 mbar
+Tbase 223.7 K
+lineshape Voigt-Kielkopf
+column dry_air vmr
+column h2o vmr 6.74e-06
+column o3 vmr 1.74e-06
+
+layer mesosphere
+Pbase 0.3 mbar
+Tbase 245.4 K
+lineshape Voigt-Kielkopf
+column dry_air vmr
+column h2o vmr 6.83e-06
+column o3 vmr 1.64e-06
+
+layer mesosphere
+Pbase 0.4 mbar
+Tbase 251.3 K
+lineshape Voigt-Kielkopf
+column dry_air vmr
+column h2o vmr 6.91e-06
+column o3 vmr 1.62e-06
+
+layer mesosphere
+Pbase 0.5 mbar
+Tbase 256.8 K
+lineshape Voigt-Kielkopf
+column dry_air vmr
+column h2o vmr 6.89e-06
+column o3 vmr 1.81e-06
+
+layer mesosphere
+Pbase 0.7 mbar
+Tbase 264.8 K
+lineshape Voigt-Kielkopf
+column dry_air vmr
+column h2o vmr 6.84e-06
+column o3 vmr 2.12e-06
+
+layer stratosphere
+Pbase 1 mbar
+Tbase 267.9 K
+lineshape Voigt-Kielkopf
+column dry_air vmr
+column h2o vmr 6.76e-06
+column o3 vmr 2.66e-06
+
+layer stratosphere
+Pbase 2 mbar
+Tbase 259.0 K
+column dry_air vmr
+column h2o vmr 6.56e-06
+column o3 vmr 3.99e-06
+
+layer stratosphere
+Pbase 3 mbar
+Tbase 251.6 K
+column dry_air vmr
+column h2o vmr 6.30e-06
+column o3 vmr 5.83e-06
+
+layer stratosphere
+Pbase 4 mbar
+Tbase 246.6 K
+column dry_air vmr
+column h2o vmr 6.06e-06
+column o3 vmr 7.19e-06
+
+layer stratosphere
+Pbase 5 mbar
+Tbase 242.6 K
+column dry_air vmr
+column h2o vmr 5.81e-06
+column o3 vmr 8.00e-06
+
+layer stratosphere
+Pbase 7 mbar
+Tbase 236.7 K
+column dry_air vmr
+column h2o vmr 5.52e-06
+column o3 vmr 8.51e-06
+
+layer stratosphere
+Pbase 10 mbar
+Tbase 231.5 K
+column dry_air vmr
+column h2o vmr 5.20e-06
+column o3 vmr 8.71e-06
+
+layer stratosphere
+Pbase 20 mbar
+Tbase 223.1 K
+column dry_air vmr
+column h2o vmr 4.89e-06
+column o3 vmr 7.69e-06
+
+layer stratosphere
+Pbase 30 mbar
+Tbase 217.9 K
+column dry_air vmr
+column h2o vmr 4.67e-06
+column o3 vmr 5.52e-06
+
+layer stratosphere
+Pbase 40 mbar
+Tbase 214.0 K
+column dry_air vmr
+column h2o vmr 4.55e-06
+column o3 vmr 3.53e-06
+
+layer stratosphere
+Pbase 50 mbar
+Tbase 210.9 K
+column dry_air vmr
+column h2o vmr 4.47e-06
+column o3 vmr 2.20e-06
+
+layer stratosphere
+Pbase 70 mbar
+Tbase 203.6 K
+column dry_air vmr
+column h2o vmr 4.48e-06
+column o3 vmr 1.16e-06
+
+layer troposphere
+Pbase 100 mbar
+Tbase 200.5 K
+column dry_air vmr
+column h2o vmr 5.19e-06
+column o3 vmr 3.92e-07
+
+layer troposphere
+Pbase 150 mbar
+Tbase 209.2 K
+column dry_air vmr
+column h2o vmr 1.24e-05
+column o3 vmr 1.14e-07
+
+layer troposphere
+Pbase 200 mbar
+Tbase 220.5 K
+column dry_air vmr
+column h2o vmr 5.16e-05
+column o3 vmr 6.18e-08
+
+layer troposphere
+Pbase 250 mbar
+Tbase 232.1 K
+column dry_air vmr
+column h2o vmr 1.44e-04
+column o3 vmr 5.02e-08
+
+layer troposphere
+Pbase 300 mbar
+Tbase 242.0 K
+column dry_air vmr
+column h2o vmr 2.64e-04
+column o3 vmr 4.70e-08
+
+layer troposphere
+Pbase 350 mbar
+Tbase 250.1 K
+column dry_air vmr
+column h2o vmr 3.97e-04
+column o3 vmr 4.58e-08
+
+layer troposphere
+Pbase 400 mbar
+Tbase 257.0 K
+column dry_air vmr
+column h2o vmr 6.31e-04
+column o3 vmr 4.52e-08
+
+layer troposphere
+Pbase 450 mbar
+Tbase 263.1 K
+column dry_air vmr
+column h2o vmr 1.16e-03
+column o3 vmr 4.47e-08
+
+layer troposphere
+Pbase 500 mbar
+Tbase 268.6 K
+column dry_air vmr
+column h2o vmr 1.98e-03
+column o3 vmr 4.39e-08
+
+layer troposphere
+Pbase 550 mbar
+Tbase 273.6 K
+column dry_air vmr
+column h2o vmr 2.87e-03
